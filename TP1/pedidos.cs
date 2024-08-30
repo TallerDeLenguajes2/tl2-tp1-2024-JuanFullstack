@@ -6,29 +6,35 @@ using System.Threading.Tasks;
 
 namespace TP1
 {
-    public class Pedidos
+    public class Pedido
     {
-        private int NumeroPedido;
-        private string Observacion;
-        private Cliente Cliente;
-        private string Estado;
+        public int NumeroPedido { get; private set; }
+        public string Observacion { get; }
+        public Cliente Cliente { get; }
+        public string Estado { get; private set; }
 
-        public Pedidos(string observacion, Cliente cliente)
+        private static int nextNumeroPedido = 1;
+
+        public Pedido(string observacion, Cliente cliente)
         {
+            NumeroPedido = nextNumeroPedido++;
             Observacion = observacion;
             Cliente = cliente;
+            Estado = "Pendiente"; // Estado inicial
+        }
+
+        public void CambiarEstado(string nuevoEstado)
+        {
+            Estado = nuevoEstado;
         }
 
         public void VerDireccionCliente()
         {
-            Console.WriteLine("Informe final de la jornada:");
-            // Acceso directo a la propiedad
             Console.WriteLine("Dirección del cliente: " + Cliente.Direccion);
         }
 
         public void VerDatosCliente()
         {
-            // Muestra todos los datos del cliente
             Console.WriteLine("Datos del cliente:");
             Console.WriteLine("Nombre: " + Cliente.Nombre);
             Console.WriteLine("Dirección: " + Cliente.Direccion);
@@ -36,7 +42,6 @@ namespace TP1
             Console.WriteLine("Datos de Referencia: " + Cliente.DatosReferencia);
         }
     }
-
 
 
 

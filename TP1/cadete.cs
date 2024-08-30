@@ -8,33 +8,38 @@ namespace TP1
 {
     public class Cadete
     {
-        // Propiedades de solo lectura
         public int Id { get; }
         public string Nombre { get; }
         public string Direccion { get; }
         public string Telefono { get; }
-        public List<Pedidos> Pedidos { get; }
+        public List<Pedido> Pedidos { get; }
 
-        // Campo estático para mantener el próximo ID disponible
         private static int nextId = 1;
 
-        // Constructor sin ID como parámetro
-        public Cadete(string nombre, string direccion, string telefono, List<Pedidos> pedidos)
+        public Cadete(string nombre, string direccion, string telefono)
         {
-            Id = nextId++; // Asigna el ID actual y luego incrementa el valor para el siguiente objeto
+            Id = nextId++;
             Nombre = nombre;
             Direccion = direccion;
             Telefono = telefono;
-            Pedidos = pedidos;
+            Pedidos = new List<Pedido>();
         }
 
-        // Método para calcular el jornal a cobrar
-        public int JornalACobrar()
+        public void AsignarPedido(Pedido pedido)
         {
-            return Pedidos.Count * 500; // Retorna el número de pedidos multiplicado por el precio fijo
+            Pedidos.Add(pedido);
+        }
+
+        public void ReasignarPedido(Pedido pedido)
+        {
+            Pedidos.Remove(pedido);
+        }
+
+        public int CalcularJornalACobrar()
+        {
+            return Pedidos.Count * 500; // Calcula el jornal basado en el número de pedidos
         }
     }
-
 
 
 

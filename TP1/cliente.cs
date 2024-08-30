@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace TP1
 {
+    // Clase Cliente
     public class Cliente
     {
-
         public string Nombre { get; }
         public string Direccion { get; }
         public string Telefono { get; }
@@ -22,7 +22,6 @@ namespace TP1
             DatosReferencia = datosReferencia;
         }
     }
-
 
 
 
